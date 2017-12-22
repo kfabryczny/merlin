@@ -35,8 +35,8 @@ import (
 	"github.com/satori/go.uuid"
 	"golang.org/x/net/http2"
 
-	"github.com/Ne0nd0g/merlin/pkg/agent"
-	"github.com/Ne0nd0g/merlin/pkg/messages"
+	"github.com/kfabryczny/merlin/pkg/agent"
+	"github.com/kfabryczny/merlin/pkg/messages"
 )
 
 // GLOBAL VARIABLES

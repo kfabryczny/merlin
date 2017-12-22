@@ -41,9 +41,9 @@ import (
 	"github.com/satori/go.uuid"
 
 	// Merlin
-	"github.com/Ne0nd0g/merlin/pkg"
-	"github.com/Ne0nd0g/merlin/pkg/banner"
-	"github.com/Ne0nd0g/merlin/pkg/messages"
+	"github.com/kfabryczny/merlin/pkg"
+	"github.com/kfabryczny/merlin/pkg/banner"
+	"github.com/kfabryczny/merlin/pkg/messages"
 )
 
 // Global Variables
