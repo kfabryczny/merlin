@@ -1,0 +1,5 @@
+cmd/merlinserver/data
+cmd/merlinserver/merlinserver
+cmd/merlinagent/merlinagent
+*.crt
+*.key
