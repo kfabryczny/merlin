@@ -72,14 +72,14 @@ func main() {
 	// Server Logging
 
 	if _, err := os.Stat(filepath.Join(currentDir, "data", "log", "merlinServerLog.txt")); os.IsNotExist(err) {
-		os.Mkdir(filepath.Join(currentDir, "data", "log"), os.ModeDir)
-		os.Create(filepath.Join(currentDir, "data", "log", "merlinServerLog.txt"))
+		os.Mkdir(filepath.Join(currentDir, "data", "log"), 0750)
+		os.OpenFile(filepath.Join(currentDir, "data", "log", "merlinServerLog.txt"), os.O_CREATE, 0660)
 		if debug {
 			color.Red("[DEBUG]Created server log file at: %s\\data\\log\\merlinServerLog.txt", currentDir)
 		}
 	}
 	var errLog error
-	serverLog, errLog = os.OpenFile(filepath.Join(currentDir, "data", "log", "merlinServerLog.txt"), os.O_APPEND|os.O_WRONLY, 0600)
+	serverLog, errLog = os.OpenFile(filepath.Join(currentDir, "data", "log", "merlinServerLog.txt"), os.O_APPEND|os.O_WRONLY, 0660)
 	if errLog != nil {
 		color.Red("[!]There was an error with the Merlin Server log file")
 		fmt.Println(errLog)
@@ -293,18 +293,18 @@ func agentInitialCheckIn(j messages.Base, p messages.SysInfo) {
 	agentsDir := filepath.Join(currentDir, "data", "agents")
 
 	if _, errD := os.Stat(agentsDir); os.IsNotExist(errD) {
-		os.Mkdir(agentsDir, os.ModeDir)
+		os.Mkdir(agentsDir, 0750)
 	}
 	if _, err := os.Stat(filepath.Join(agentsDir, j.ID.String())); os.IsNotExist(err) {
-		os.Mkdir(filepath.Join(agentsDir, j.ID.String()), os.ModeDir)
-		os.Create(filepath.Join(agentsDir, j.ID.String(), "agent_log.txt"))
+		os.Mkdir(filepath.Join(agentsDir, j.ID.String()), 0750)
+		os.OpenFile(filepath.Join(agentsDir, j.ID.String(), "agent_log.txt"), os.O_CREATE, 0660)
 
 		if verbose {
 			color.Yellow("[-]Created agent log file at: %s", agentsDir, j.ID.String(), "agent_log.txt")
 		}
 	}
 
-	f, err := os.OpenFile(filepath.Join(agentsDir, j.ID.String(), "agent_log.txt"), os.O_APPEND|os.O_WRONLY, 0600)
+	f, err := os.OpenFile(filepath.Join(agentsDir, j.ID.String(), "agent_log.txt"), os.O_APPEND|os.O_WRONLY, 0755)
 	if err != nil {
 		panic(err)
 	}
